@@ -15,7 +15,7 @@
             border-radius: 10px;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            display: none;
+            display: flex;
             flex-direction: column;
         }
         .chatbot-header {
@@ -60,9 +60,6 @@
     </style>
 </head>
 <body>
-    <!-- Botão para abrir o chatbot -->
-    <button class="chatbot-button" id="chatbotButton">💬</button>
-
     <!-- Contêiner do chatbot -->
     <div class="chatbot-container" id="chatbotContainer">
         <div class="chatbot-header">Chatbot</div>
@@ -73,11 +70,6 @@
     </div>
 
     <script>
-        document.getElementById('chatbotButton').addEventListener('click', function() {
-            var container = document.getElementById('chatbotContainer');
-            container.style.display = container.style.display === 'none' || container.style.display === '' ? 'flex' : 'none';
-        });
-
         // Função para adicionar mensagens ao chatbot
         function addMessage(text, from) {
             var chatBody = document.getElementById('chatbotBody');
@@ -107,11 +99,16 @@
                         botResponse = 'Claro, estou aqui para ajudar! O que você precisa?';
                     } else if (userMessage.toLowerCase().includes('tchau')) {
                         botResponse = 'Até logo! Tenha um ótimo dia!';
+                    } else if (userMessage.toLowerCase().includes('preço')) {
+                        botResponse = 'Os preços variam de acordo com o produto. Por favor, informe o produto para mais detalhes.';
                     }
                     addMessage(botResponse, 'bot');
                 }, 500);
             }
         });
+
+        // Mensagem de boas-vindas
+        addMessage('Olá! Como posso ajudar você hoje?', 'bot');
     </script>
 </body>
 </html>
